@@ -3,3 +3,6 @@
 
 # Ignore all images
 *.jpg
+
+#Ignore Model
+/code/Model/
