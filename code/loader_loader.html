@@ -1,0 +1,46 @@
+<html>
+<body>
+
+<script>
+    // read the contents of the file 'py_result.txt'
+    fetch('py_result.txt')
+        .then(response => response.text())
+        .then(data => {
+            var num = data.trim(); // remove any whitespace from the file contents
+            // use a switch statement to check the value of num
+            switch (num) {
+                case "1":
+                    console.log("get 1");
+                    window.location.href = "result/result_cat.html";
+                    break;
+                case "2":
+                    console.log("get 2");
+                    window.location.href = "result/result_dog.html";
+                    break;
+                case "3":
+                    console.log("get 3");
+                    window.location.href = "result/result_fox.html";
+                    break;
+                case "4":
+                    console.log("get 4");
+                    window.location.href = "result/result_koala.html";
+                    break;
+                case "5":
+                    console.log("get 5");
+                    window.location.href = "result/result_lion.html";
+                    break;
+                case "6":
+                    console.log("get 6");
+                    window.location.href = "result/result_rabbit.html";
+                    break;
+                case "7":
+                    console.log("get 7");
+                    window.location.href = "result/result_tiger.html";
+                    break;
+                default:
+                    console.log("you made wrong");
+            }
+        });
+</script>
+</body>
+</html>
