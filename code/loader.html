@@ -56,6 +56,7 @@
       var imageData = localStorage.getItem("image_face");
       var image = document.getElementById("image");
       image.src = imageData;
+      image.style.display = "none"; 
       const img = image;
 
       const predictImage = async () => {
