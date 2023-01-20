@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Cat detection</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.0.1"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet@1.0.0"></script>
     <style>
       .loader-container {
         text-align: center;
@@ -44,11 +50,59 @@
       <div class="loader"></div>
       <p>Please Wait...</p>
     </div>
+    <img id="image" alt="cat laying down"/>
+
     <script>
-      // Add JavaScript to redirect to "loader_loader.html" after 30 seconds
-      setTimeout(function() {
-        window.location.href = "loader_loader.html";
-      }, 30000);
+      var imageData = localStorage.getItem("image_face");
+      var image = document.getElementById("image");
+      image.src = imageData;
+      const img = image;
+
+      const predictImage = async () => {
+        console.log("Model loading...");
+        const model = await mobilenet.load();
+        console.log("Model is loaded!")
+
+        const predictions = await model.classify(img);
+        var pred_animal = predictions[0].className;
+        if (pred_animal.includes("cat")) {
+          setTimeout(function() {
+            window.location.href = "./result/result_cat.html";
+          }, 10000);
+        } else if (pred_animal.includes("dog")) {
+          setTimeout(function() {
+            window.location.href = "./result/result_dog.html";
+          }, 10000);
+        } else if (pred_animal.includes("tiger")) {
+          setTimeout(function() {
+            window.location.href = "./result/result_tiger.html";
+          }, 10000);
+        } else if (pred_animal.includes("fox")) {
+          setTimeout(function() {
+            window.location.href = "./result/result_fox.html";
+          }, 10000);
+        } else if (pred_animal.includes("koala")) {
+          setTimeout(function() {
+            window.location.href = "./result/result_koala.html";
+          }, 10000);
+        } else if (pred_animal.includes("lion")) {
+          setTimeout(function() {
+            window.location.href = "./result/result_lion.html";
+          }, 10000);
+        } else if (pred_animal.includes("rabbit")) {
+          setTimeout(function() {
+            window.location.href = "./result/result_rabbit.html";
+          }, 10000);
+        } else {
+          setTimeout(function() {
+            window.location.href = "./result/result_dog.html";
+          }, 10000);
+        }
+
+        console.log(typeof predictions[0])
+        console.log('Predictions: ', predictions[0]);
+      }
+      predictImage();
     </script>
   </body>
 </html>

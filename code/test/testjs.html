@@ -23,12 +23,23 @@
         var pred_animal = predictions[0].className;
         if (pred_animal.includes("cat")) {
             console.log('Predictions: ', predictions[0]);
-            window.location.href = "../../../result/result_cat.html";
+            window.location.href = "./result/result_cat.html";
         } else if (pred_animal.includes("dog")) {
-            window.location.href = "dog.html";
+            window.location.href = "./result/result_dog.html";
         } else if (pred_animal.includes("tiger")) {
-            window.location.href = "tiger.html";
+            window.location.href = "./result/result_tiger.html";
+        } else if (pred_animal.includes("fox")) {
+            window.location.href = "./result/result_fox.html";
+        } else if (pred_animal.includes("koala")) {
+            window.location.href = "./result/result_koala.html";
+        } else if (pred_animal.includes("lion")) {
+            window.location.href = "./result/result_lion.html";
+        } else if (pred_animal.includes("rabbit")) {
+            window.location.href = "./result/result_rabbit.html";
+        } else {
+            window.location.href = "./result/result_tiger.html";
         }
+
         console.log(typeof predictions[0])
         console.log('Predictions: ', predictions[0]);
       }
