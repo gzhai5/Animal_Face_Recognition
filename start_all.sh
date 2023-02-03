@@ -33,4 +33,4 @@ encode_env "HOST_IP"
 docker-compose -f docker_compose.yml up $BUILD -d
 
 # Open browser webpages
-open http://localhost:8083
+open http://$HOST_IP:8083

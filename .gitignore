@@ -5,4 +5,5 @@
 *.jpg
 
 #Ignore Model
-/code/Model/
+/server/code/Model/
+/angular

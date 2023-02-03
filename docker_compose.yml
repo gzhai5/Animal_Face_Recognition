@@ -3,10 +3,10 @@ version: '3'
 services:
   nginx:
     build:
-      context: ${CUR_DIR}
+      context: ${CUR_DIR}/server
     container_name: animal_rec_server
     volumes: 
-      - ${CUR_DIR}/code:/usr/share/nginx/html:ro
+      - ${CUR_DIR}/server/code:/usr/share/nginx/html:ro
     ports:
       - 8083:80
     expose:
