@@ -1,0 +1,41 @@
+version: '3'
+
+services:
+  nginx:
+    build:
+      context: ${CUR_DIR}/server
+    container_name: animal_rec_server
+    volumes: 
+      - ${CUR_DIR}/server/code:/usr/share/nginx/html:ro
+    ports:
+      - 8083:80
+    expose:
+      - 80
+    stdin_open: true
+    tty: true
+
+  angular:
+    build: 
+      context: ${CUR_DIR}/angular
+    container_name: animal_rec_front
+    command: sh -c "npm start"
+    ports:
+      - 8084:4200
+    volumes:
+      - ${CUR_DIR}/angular:/home/node/app
+      - ${CUR_DIR}/angular/node_modules:/home/node/app/node_modules
+volumes:
+  node_modules:
+
+# version: '3.7'
+# services:
+#   app:
+#     build: ./angular
+#     command: sh -c "npm start"
+#     ports:
+#       - 4200:4200
+#     volumes:
+#       - ./angular:/home/node/app
+#       - ./angular/node_modules:/home/node/app/node_modules
+# volumes:
+#   node_modules:

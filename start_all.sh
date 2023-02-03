@@ -1,4 +1,4 @@
-docker-compose -f docker_compose.yml down
+docker-compose -f docker-compose.yml down
 while getopts "bk" arg
 do
   case $arg in
@@ -7,7 +7,7 @@ do
       exit 0
       ;;
     b)
-      docker-compose -f docker_compose.yml rm -f
+      docker-compose -f docker-compose.yml rm -f
       BUILD="--build"
       ;;
     ?)
@@ -30,7 +30,7 @@ encode_env "CUR_DIR"
 encode_env "HOST_IP"
 
 # Start service
-docker-compose -f docker_compose.yml up $BUILD -d
+docker-compose -f docker-compose.yml up $BUILD -d
 
 # Open browser webpages
 open http://$HOST_IP:8083
