@@ -4,6 +4,9 @@
 # Ignore all images
 *.jpg
 
+# Ignore all .env
+*.env
+
 #Ignore Model
 /server/code/Model/
 /angular
