@@ -1,0 +1,1 @@
+nginx -g 'daemon off;' 2> start_error.log

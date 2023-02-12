@@ -7,28 +7,11 @@
 # Ignore all .env
 *.env
 
-#Ignore Model
+# Ignore Model
 /server/code/Model/
 
-# Compiled output
-/angular/dist
-/angular/tmp
-/angular/out-tsc
-/angular/bazel-out
-
-# Node
-/angular/node_modules
-/angular/npm-debug.log
-/angular/yarn-error.log
-
-# IDEs and editors
-.idea/
-.project
-.classpath
-.c9/
-*.launch
-.settings/
-*.sublime-workspace
+# Ignore Angular
+/angular
 
 # Visual Studio Code
 .vscode/*
@@ -37,12 +20,3 @@
 !.vscode/launch.json
 !.vscode/extensions.json
 .history/*
-
-# Miscellaneous
-/angular/.angular/cache
-.sass-cache/
-/connect.lock
-/coverage
-/libpeerconnection.log
-testem.log
-/typings

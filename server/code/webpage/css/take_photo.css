@@ -1,0 +1,112 @@
+body{
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(125deg,#2c3e50,#27ae60,#2980b9,#e74c3c,#8e44ad);
+    background-size: 500%;
+    animation: bgAnimation 15s linear infinite;
+}
+.header, .footer {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    box-sizing: border-box;
+    position: fixed;
+    left: 0;
+    right: 0;
+}
+.header {
+    background-color: #196944;
+    padding: 20px;
+    text-align: center;
+    top: 0;
+}
+.footer {
+    padding: 10px;
+    background: #196944;
+    text-align: center;
+    bottom: 0;
+}
+.content{
+    margin: 5px;		
+    padding: 0;
+    box-sizing: border-box;
+    text-align: center;
+}
+h1 {
+    color: #6699CC;
+    font-weight: bolder;
+    font-family: Comic Sans MS, Comic Sans, cursive;
+    font-size: 40px;
+}
+h2 {
+    color: #CCCCCC;
+    font-weight: bold;
+    font-family: Gill Sans, sans-serif;
+    font-size: 25px;
+}
+h3 {
+    color: #CCCCCC;
+    font-weight: normal;
+    font-family: Bradley Hand, cursive;
+    font-size: 20px;
+}
+p {
+    color: #CF5555;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 17px;
+}
+
+button {
+    display: inline-block;
+    border-radius: 4px;
+    background-color: #3d405b;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 17px;
+    padding: 15px 32px;
+    width: 130px;
+    transition: all 0.5s;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+button span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+button span:after {
+    content: '»';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -15px;
+    transition: 0.5s;
+}
+button:hover span {
+    padding-right: 15px;
+}
+button:hover span:after {
+    opacity: 1;
+    right: 0;
+}
+.button1 {background-color: #4CAF50;}
+.button2 {background-color: #008CBA;}
+
+@media screen and (max-width:700px) {
+    .content{
+    width: 100%;
+    margin: 0px;
+    }
+}
