@@ -20,7 +20,7 @@ body{
 }
 .header {
     background-color: #196944;
-    padding: 20px;
+    padding: 10px;
     text-align: center;
     top: 0;
 }
@@ -35,6 +35,9 @@ body{
     padding: 0;
     box-sizing: border-box;
     text-align: center;
+}
+.container{
+    height: -100px;
 }
 h1 {
     color: #6699CC;
