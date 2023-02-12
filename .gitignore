@@ -11,7 +11,7 @@
 /server/code/Model/
 
 # Ignore Angular
-/angular
+
 
 # Visual Studio Code
 .vscode/*
