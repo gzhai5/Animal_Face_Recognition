@@ -8,7 +8,7 @@
 *.env
 
 # Ignore Model
-/server/code/Model/
+/ml_predict/code/Model/
 
 # Ignore Angular
 /angular
