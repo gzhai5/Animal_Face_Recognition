@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewreport" content="width=device-width, initial-scale=1.0">
+    <title>Take Photo</title>
+	<link rel="stylesheet" href="../css/take_photo.css">
+</head>
+<body>
+    <div class="main">
+         <div class="header">
+              <h1>Get your Animal</h1>
+         </div>
+	 <div class="container">
+	      <div class="content">
+			<h2>Give Yourself a Snapshot</h2>
+	    	<h3>Use the below button to grab your head photo</h3>
+		   	<br/>
+		   <div>
+				<video id="webcam-stream" width="400" height="300"></video>
+				<img id="taken-photo" width="400" height="300">
+			</div>
+			<br/><br/><br/>
+			<button class="button button1" id="capture-button"><span>Take Photo</span></button>
+			<button class="button button2" id="jump-button" onclick="document.location='loader.html'" disabled><span>Analyze Photo</span></button>     	
+	      </div>	
+	 </div>
+	 <div class="footer">
+	      <p>© Created by Guangxun Zhai, Xi Zhao in 2022</p>
+	 </div>
+    </div>
+	<script src="../js/take_photo.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+     
