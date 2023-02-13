@@ -25,16 +25,16 @@ captureButton.addEventListener('click', event => {
 });
 
 // Set up save photo button
-const saveButton = document.getElementById('save-button');
-saveButton.addEventListener('click', event => {
-  // Get image data from 'taken photo' img element
-  const img = document.getElementById('taken-photo');
-  const imageData = img.src;
-  localStorage.setItem("image_face", imageData);
+// const saveButton = document.getElementById('save-button');
+// saveButton.addEventListener('click', event => {
+//   // Get image data from 'taken photo' img element
+//   const img = document.getElementById('taken-photo');
+//   const imageData = img.src;
+//   localStorage.setItem("image_face", imageData);
 
   // Download image
-  const link = document.createElement('a');
-  link.download = 'input.jpeg';
-  link.href = imageData;
-  link.click();
-});
+  // const link = document.createElement('a');
+  // link.download = 'input.jpeg';
+  // link.href = imageData;
+  // link.click();
+// });
