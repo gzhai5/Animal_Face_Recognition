@@ -7,7 +7,7 @@ VOLUME /animal_predict
 
 WORKDIR /animal_predict
 
-CMD python AnimalFace.py --image_path ./random_test_imgs/fatcat.jpeg
+CMD python AnimalFace.py --image_path ./random_test_imgs/Dogecoin.jpg
 
 # COPY code code
 # COPY requirements.txt requirements.txt
