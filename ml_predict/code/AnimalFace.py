@@ -18,7 +18,7 @@ animal_dict = {
     "tiger": 7
 }
 
-#print("step 1")
+HaveRun = False
 
 def process_single_image_for_predict(img, target_size):
     from PIL import Image
@@ -59,8 +59,8 @@ def predict_image(img):
     f = open("py_result.txt", "w")
     f.write(str(animal_dict[predict_label]))
     f.close()
-    if os.path.exists(image_file_saved_path):
-        os.remove(image_file_saved_path)
+    global HaveRun
+    HaveRun = True
     
 '''    import random
     
@@ -80,7 +80,6 @@ def predict_image(img):
         save_path = os.path.join(predict_result_save_path, ''.join((datetime.now().strftime("%Y%m%d-%H%M%S"), '-', predict_label, '-', 'prob','.jpg'))))
 '''
 
-#print("step 2")
 
 # Settings
 IM_WIDTH, IM_HEIGHT = 150, 150
@@ -96,7 +95,6 @@ ensure_directory(predict_result_save_path)
 display = True
 
 
-
 if __name__ == '__main__':
     import os
     #print("step 3")
@@ -109,7 +107,6 @@ if __name__ == '__main__':
         #print(type(args.image_path))
         #print(args.image_path)
         image_file_saved_path = args.image_path
-        #print("step 3")
         if os.path.exists(image_file_saved_path):
             print("-------input detected--------")
             
@@ -169,8 +166,9 @@ if __name__ == '__main__':
             for img in images:
                 predict_image(img)
             #sys.exit(1)
-                
+        elif (HaveRun == True):
+            print("----Finished ML-----")
+            sys.exit(1)    
         #    print("{:<10} Finish Recognizing {} images. Prediction Results are saved to {}".format('[INFO]', len(images), predict_result_save_path))
         else:
             print("-------No Input.jpg--------")
-            sys.exit(1)
