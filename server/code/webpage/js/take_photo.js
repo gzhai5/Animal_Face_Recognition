@@ -25,16 +25,25 @@ captureButton.addEventListener('click', event => {
 });
 
 // Set up save photo button
-// const saveButton = document.getElementById('save-button');
-// saveButton.addEventListener('click', event => {
-//   // Get image data from 'taken photo' img element
-//   const img = document.getElementById('taken-photo');
-//   const imageData = img.src;
-//   localStorage.setItem("image_face", imageData);
+const jumpButton = document.getElementById('jump-button');
+jumpButton.addEventListener('click', event => {
+  // Get the captured photo from the 'taken-photo' img element
+  const img = document.getElementById('taken-photo');
+  const photoDataUrl = img.src;
 
-  // Download image
-  // const link = document.createElement('a');
-  // link.download = 'input.jpeg';
-  // link.href = imageData;
-  // link.click();
-// });
+  // Send the photo to the Flask container
+  fetch('/process-image', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ photoDataUrl })
+  })
+  .then(response => response.json())
+  .then(data => {
+    // Redirect the user to the result page with the ML result in the query string
+    const resultUrl = `./html/loader.html`;
+    window.location.href = resultUrl;
+  })
+  .catch(error => console.error(error));
+});

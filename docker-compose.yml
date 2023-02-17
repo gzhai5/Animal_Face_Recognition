@@ -20,6 +20,21 @@ services:
     container_name: animal_rec_ml
     volumes: 
       - ${CUR_DIR}/ml_predict/code:/animal_predict
+    ports:
+      - 8085:5000
+    expose:
+      - 5000
+    stdin_open: true
+    tty: true
+
+  flashapp:
+    build:
+      context: ${CUR_DIR}/flaskapp
+    container_name: animal_rec_bridge
+    ports:
+      - 8084:5000
+    expose:
+      - 5000
     stdin_open: true
     tty: true
 
