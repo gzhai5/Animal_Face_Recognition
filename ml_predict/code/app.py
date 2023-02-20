@@ -1,13 +1,16 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 import base64
+import subprocess
 
 app = Flask(__name__)
+CORS(app)
 
 @app.route('/process-image', methods=['POST'])
 def process_image():
     # Get the photo data from the request body
-    data = request.json
-    photo_data_url = data['photoDataUrl']
+    data = request.data.decode('utf-8')
+    photo_data_url = data
 
     # Convert the base64-encoded photo data to a binary image file
     _, encoded = photo_data_url.split(';base64,')
@@ -20,9 +23,14 @@ def process_image():
     # Process the image with your machine learning model
     # Replace this with your own ML code
     result = 'Some machine learning result'
+    subprocess.run(["python", "AnimalFace.py", "--image_path", "photo.png"])
+    with open('py_result.txt') as f:
+        result = f.read()
 
     # Return the ML result to the front-end as JSON
-    return jsonify({'result': result})
+    response = {'result': result}
+    print(response)
+    return jsonify(response)
 
 
 if __name__ == '__main__':

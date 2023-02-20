@@ -32,18 +32,19 @@ jumpButton.addEventListener('click', event => {
   const photoDataUrl = img.src;
 
   // Send the photo to the Flask container
-  fetch('/process-image', {
+  fetch('http://localhost:8085/process-image', {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'text/plain'
     },
-    body: JSON.stringify({ photoDataUrl })
+    body: JSON.stringify(photoDataUrl)
   })
   .then(response => response.json())
   .then(data => {
-    // Redirect the user to the result page with the ML result in the query string
-    const resultUrl = `./html/loader.html`;
+    const resultUrl = `../html/loader.html?result=${data.result}`;
     window.location.href = resultUrl;
   })
   .catch(error => console.error(error));
 });
+
+

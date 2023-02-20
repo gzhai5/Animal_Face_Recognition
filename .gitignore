@@ -1,8 +1,13 @@
 # Ignore Mac system files
 .DS_store
 
-# Ignore all images
-*.jpg
+# Ignore all ml trainning images
+/ml_predict/code/DataFile
+
+# Ignore all ml env
+/ml_predict/code/__pycache__
+/ml_predict/code/photo.png
+/ml_predict/code/py_result.txt
 
 # Ignore all .env
 *.env

@@ -7,7 +7,12 @@ VOLUME /animal_predict
 
 WORKDIR /animal_predict
 
-CMD python AnimalFace.py --image_path ./random_test_imgs/Dogecoin.jpg
+RUN pip install flask requests
+RUN pip install flask-cors
+
+EXPOSE 5000
+
+CMD ["flask", "run", "--host=0.0.0.0"]
 
 # COPY code code
 # COPY requirements.txt requirements.txt

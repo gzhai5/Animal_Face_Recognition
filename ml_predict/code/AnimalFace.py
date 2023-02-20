@@ -57,7 +57,7 @@ def predict_image(img):
 
     print(predict_label)
     f = open("py_result.txt", "w")
-    f.write(str(animal_dict[predict_label]))
+    f.write(str(predict_label))
     f.close()
     global HaveRun
     HaveRun = True
@@ -98,77 +98,76 @@ display = True
 if __name__ == '__main__':
     import os
     #print("step 3")
-    while True:
+    a = argparse.ArgumentParser()
+    a.add_argument("--image_path", help="path to image")
+    a.add_argument("--image_url", help="url to image")
+    a.add_argument("--model")
+    args = a.parse_args()
+    #print(type(args.image_path))
+    #print(args.image_path)
+    image_file_saved_path = args.image_path
+    if os.path.exists(image_file_saved_path):
+        print("-------input detected--------")
+        
+        from PIL import Image
+        image_old = Image.open(image_file_saved_path)
+        if image_old.mode == 'RGBA':
+            image_new = image_old.convert('RGB')
+            image_new.save(image_file_saved_path)
+
         a = argparse.ArgumentParser()
         a.add_argument("--image_path", help="path to image")
         a.add_argument("--image_url", help="url to image")
         a.add_argument("--model")
         args = a.parse_args()
-        #print(type(args.image_path))
-        #print(args.image_path)
-        image_file_saved_path = args.image_path
-        if os.path.exists(image_file_saved_path):
-            print("-------input detected--------")
-            
-            from PIL import Image
-            image_old = Image.open(image_file_saved_path)
-            if image_old.mode == 'RGBA':
-                image_new = image_old.convert('RGB')
-                image_new.save(image_file_saved_path)
 
-            a = argparse.ArgumentParser()
-            a.add_argument("--image_path", help="path to image")
-            a.add_argument("--image_url", help="url to image")
-            a.add_argument("--model")
-            args = a.parse_args()
+        if args.image_path is None and args.image_url is None:
+            a.print_help()
+            sys.exit(1)
 
-            if args.image_path is None and args.image_url is None:
-                a.print_help()
-                sys.exit(1)
-
-            if args.model is None:
-                model_choice = 'VGG16'
-                #model_choice = 'InceptionV3'
-        #        print("{:<10} The default pretrained model will be used: {}".format('[INFO]', model_choice))
-        #        print("{:<10} You can selecting model by adding argument - VGG16, ResNet50, VGG19, InceptionResNetV2, DenseNet201, Xception or InceptionV3 {}".format('', model_choice))
-            else:
-                model_choice = args.model
-
-            # Load model
-        #    print("{:<10} Start loading model".format('[INFO]', model_choice))
-            from keras.models import load_model
-            tuned_model_path = os.path.join(model_path, model_choice, 'tune', model_choice+'.h5')
-            try:
-                model = load_model(tuned_model_path)
-            except:
-        #        print("{:<10} Cannot load model trained from {}".format('[ERROR]', model_choice))
-                exit(1)
-
-            # Load image
-        #    print("{:<10} Start loading images".format('[INFO]'))
-            if args.image_path is None:
-                images = [read_image_from_url(args.image_url)]
-            else:
-                try:
-                    image_paths = get_sub_fpaths(args.image_path)
-                    image_file_saved_path = args.image_path
-                    if len(image_paths) > 3:
-                        display = False
-                    predict_result_save_path = os.path.join(predict_result_save_path, args.image_path.split('/')[-1])
-                    ensure_directory(predict_result_save_path)
-                except:
-                    image_paths = [args.image_path]
-                finally:
-                    images = [read_image_from_path(image_path) for image_path in image_paths]
-
-
-        #    print("{:<10} Start Recognizing".format('[INFO]', model_choice))
-            for img in images:
-                predict_image(img)
-            #sys.exit(1)
-        elif (HaveRun == True):
-            print("----Finished ML-----")
-            sys.exit(1)    
-        #    print("{:<10} Finish Recognizing {} images. Prediction Results are saved to {}".format('[INFO]', len(images), predict_result_save_path))
+        if args.model is None:
+            model_choice = 'VGG16'
+            #model_choice = 'InceptionV3'
+    #        print("{:<10} The default pretrained model will be used: {}".format('[INFO]', model_choice))
+    #        print("{:<10} You can selecting model by adding argument - VGG16, ResNet50, VGG19, InceptionResNetV2, DenseNet201, Xception or InceptionV3 {}".format('', model_choice))
         else:
-            print("-------No Input.jpg--------")
+            model_choice = args.model
+
+        # Load model
+    #    print("{:<10} Start loading model".format('[INFO]', model_choice))
+        from keras.models import load_model
+        tuned_model_path = os.path.join(model_path, model_choice, 'tune', model_choice+'.h5')
+        try:
+            model = load_model(tuned_model_path)
+        except:
+    #        print("{:<10} Cannot load model trained from {}".format('[ERROR]', model_choice))
+            exit(1)
+
+        # Load image
+    #    print("{:<10} Start loading images".format('[INFO]'))
+        if args.image_path is None:
+            images = [read_image_from_url(args.image_url)]
+        else:
+            try:
+                image_paths = get_sub_fpaths(args.image_path)
+                image_file_saved_path = args.image_path
+                if len(image_paths) > 3:
+                    display = False
+                predict_result_save_path = os.path.join(predict_result_save_path, args.image_path.split('/')[-1])
+                ensure_directory(predict_result_save_path)
+            except:
+                image_paths = [args.image_path]
+            finally:
+                images = [read_image_from_path(image_path) for image_path in image_paths]
+
+
+    #    print("{:<10} Start Recognizing".format('[INFO]', model_choice))
+        for img in images:
+            predict_image(img)
+        #sys.exit(1)
+    elif (HaveRun == True):
+        print("----Finished ML-----")
+        sys.exit(1)    
+    #    print("{:<10} Finish Recognizing {} images. Prediction Results are saved to {}".format('[INFO]', len(images), predict_result_save_path))
+    else:
+        print("-------No Input.jpg--------")
