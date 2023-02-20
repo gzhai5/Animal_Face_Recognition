@@ -1,16 +1,8 @@
-var imageData = localStorage.getItem("image_face");
-var image = document.getElementById("image");
-image.src = imageData;
-image.style.display = "none"; 
-const img = image;
+const urlParams = new URLSearchParams(window.location.search);
+const result = urlParams.get('result');
+console.log(result); // or do something else with the result
 
-const predictImage = async () => {
-console.log("Model loading...");
-const model = await mobilenet.load();
-console.log("Model is loaded!")
-
-const predictions = await model.classify(img);
-var pred_animal = predictions[0].className;
+var pred_animal = result; 
 if (pred_animal.includes("cat")) {
     setTimeout(function() {
     window.location.href = "result/result_cat.html";
@@ -44,8 +36,3 @@ if (pred_animal.includes("cat")) {
     window.location.href = "result/result_tiger.html";
     }, 10000);
 }
-
-console.log(typeof predictions[0])
-console.log('Predictions: ', predictions[0]);
-}
-predictImage();
