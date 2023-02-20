@@ -1,6 +1,6 @@
-FROM tensorflow/tensorflow
+FROM python:3.7
 
-# RUN pip install tensorflow==2.10.0 tensorflow-io==0.27.0
+RUN pip install tensorflow==2.10.0 tensorflow-io==0.27.0
 RUN pip install Pillow
 
 VOLUME /animal_predict
